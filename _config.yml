@@ -8,7 +8,9 @@ subtitle: ''
 description: ''
 keywords:
 author: MiWyf 楚歌
-language: en
+language: 
+  - zh-CN
+  - en
 timezone: ''
 
 # URL
@@ -40,7 +42,10 @@ external_link:
   exclude: ''
 filename_case: 0
 render_drafts: false
-post_asset_folder: false
+post_asset_folder: true
+marked:
+  prependRoot: true
+  postAsset: true
 relative_link: false
 future: true
 highlight:
@@ -97,7 +102,6 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-##theme: landscape
 theme: next
 
 # Deployment
