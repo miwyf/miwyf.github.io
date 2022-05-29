@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Hello World</title>
+    <url>/2022/05/29/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<span id="more"></span>
+
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>kms</title>
+    <url>/2021/11/12/kms/</url>
+    <content><![CDATA[<h1 id="kms-server-docker-image"><a href="#kms-server-docker-image" class="headerlink" title="kms server docker image"></a>kms server docker image</h1><h2 id="地址："><a href="#地址：" class="headerlink" title="地址："></a>地址：</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://hub.docker.com/r/luodaoyi/kms-server</span><br></pre></td></tr></table></figure>
+
+<h2 id="KMS激活使用方法"><a href="#KMS激活使用方法" class="headerlink" title="KMS激活使用方法"></a>KMS激活使用方法</h2><p>一般来说，只要确保的下载的是VL批量版本并且没有手动安装过任何key， 你只需要使用管理员权限运行cmd执行一句命令就足够：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">slmgr /skms kms.luody.info</span><br></pre></td></tr></table></figure>
+
+<p>然后去计算机属性或者控制面板其他的什么的地方点一下激活就好了。</p>
+<p>当然，如果你懒得点，可以多打一句命令手动激活：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">slmgr /ato</span><br></pre></td></tr></table></figure>
+
+<p>这句命令的意思是，马上对当前设置的key和服务器地址等进行尝试激活操作。</p>
+<p>kms激活的前提是你的系统是批量授权版本，即VL版，一般企业版都是VL版，专业版有零售和VL版，家庭版旗舰版OEM版等等那就肯定不能用kms激活。一般建议从<a href="http://msdn.itellyou.cn/">http://msdn.itellyou.cn</a>上面下载系统 VL版本的镜像一般内置GVLK key，用于kms激活。如果你手动输过其他key，那么这个内置的key就会被替换掉，这个时候如果你想用kms，那么就需要把GVLK key输回去。首先， 到<a href="https://technet.microsoft.com/en-us/library/jj612867.aspx">https://technet.microsoft.com/en-us/library/jj612867.aspx</a> 获取你对应版本的KEY 如果打不开下面有对应的</p>
+<p>如果不知道自己的系统是什么版本，可以运行以下命令查看系统版本：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wmic os get caption</span><br></pre></td></tr></table></figure>
+
+<p>得到对应key之后，使用管理员权限运行cmd执行安装key：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">slmgr /ipk xxxxx-xxxxx-xxxxx-xxxxx</span><br></pre></td></tr></table></figure>
+
+<p>然后跟上面说的一样设置kms服务器地址，激活。</p>
+<h1 id="Windows-GVLK密钥对照表（KMS激活专用）"><a href="#Windows-GVLK密钥对照表（KMS激活专用）" class="headerlink" title="Windows GVLK密钥对照表（KMS激活专用）"></a>Windows GVLK密钥对照表（KMS激活专用）</h1><blockquote>
+<p>以下key来源于微软官网：<a href="https://technet.microsoft.com/en-us/library/jj612867.aspx">https://technet.microsoft.com/en-us/library/jj612867.aspx</a></p>
+</blockquote>
+<h2 id="Windows-Server-2016"><a href="#Windows-Server-2016" class="headerlink" title="Windows Server 2016"></a>Windows Server 2016</h2><table>
+<thead>
+<tr>
+<th>操作系统</th>
+<th>KMS激活序列号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Windows Server 2016 Datacenter</td>
+<td>CB7KF-BWN84-R7R2Y-793K2-8XDDG</td>
+</tr>
+<tr>
+<td>Windows Server 2016 Standard</td>
+<td>WC2BQ-8NRM3-FDDYY-2BFGV-KHKQY</td>
+</tr>
+<tr>
+<td>Windows Server 2016 Essentials</td>
+<td>JCKRF-N37P4-C2D82-9YXRT-4M63B</td>
+</tr>
+</tbody></table>
+<h2 id="Windows-10"><a href="#Windows-10" class="headerlink" title="Windows 10"></a>Windows 10</h2><table>
+<thead>
+<tr>
+<th>操作系统</th>
+<th>KMS激活序列号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Windows 10 Professional</td>
+<td>W269N-WFGWX-YVC9B-4J6C9-T83GX</td>
+</tr>
+<tr>
+<td>Windows 10 Professional N</td>
+<td>MH37W-N47XK-V7XM9-C7227-GCQG9</td>
+</tr>
+<tr>
+<td>Windows 10 Enterprise</td>
+<td>NPPR9-FWDCX-D2C8J-H872K-2YT43</td>
+</tr>
+<tr>
+<td>Windows 10 Enterprise N</td>
+<td>DPH2V-TTNVB-4X9Q3-TJR4H-KHJW4</td>
+</tr>
+<tr>
+<td>Windows 10 Education</td>
+<td>NW6C2-QMPVW-D7KKK-3GKT6-VCFB2</td>
+</tr>
+<tr>
+<td>Windows 10 Education N</td>
+<td>2WH4N-8QGBV-H22JP-CT43Q-MDWWJ</td>
+</tr>
+<tr>
+<td>Windows 10 Enterprise 2015 LTSB</td>
+<td>WNMTR-4C88C-JK8YV-HQ7T2-76DF9</td>
+</tr>
+<tr>
+<td>Windows 10 Enterprise 2015 LTSB N</td>
+<td>2F77B-TNFGY-69QQF-B8YKP-D69TJ</td>
+</tr>
+<tr>
+<td>Windows 10 Enterprise 2016 LTSB</td>
+<td>DCPHK-NFMTC-H88MJ-PFHPY-QJ4BJ</td>
+</tr>
+<tr>
+<td>Windows 10 Enterprise 2016 LTSB N</td>
+<td>QFFDN-GRT3P-VKWWX-X7T3R-8B639</td>
+</tr>
+</tbody></table>
+<h2 id="Windows-Server-2012-R2-和-Windows-8-1"><a href="#Windows-Server-2012-R2-和-Windows-8-1" class="headerlink" title="Windows Server 2012 R2 和 Windows 8.1"></a>Windows Server 2012 R2 和 Windows 8.1</h2><table>
+<thead>
+<tr>
+<th>操作系统</th>
+<th>KMS激活序列号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Windows 8.1 Professional</td>
+<td>GCRJD-8NW9H-F2CDX-CCM8D-9D6T9</td>
+</tr>
+<tr>
+<td>Windows 8.1 Professional N</td>
+<td>HMCNV-VVBFX-7HMBH-CTY9B-B4FXY</td>
+</tr>
+<tr>
+<td>Windows 8.1 Enterprise</td>
+<td>MHF9N-XY6XB-WVXMC-BTDCT-MKKG7</td>
+</tr>
+<tr>
+<td>Windows 8.1 Enterprise N</td>
+<td>TT4HM-HN7YT-62K67-RGRQJ-JFFXW</td>
+</tr>
+<tr>
+<td>Windows Server 2012 R2 Server Standard</td>
+<td>D2N9P-3P6X9-2R39C-7RTCD-MDVJX</td>
+</tr>
+<tr>
+<td>Windows Server 2012 R2 Datacenter</td>
+<td>W3GGN-FT8W3-Y4M27-J84CP-Q3VJ9</td>
+</tr>
+<tr>
+<td>Windows Server 2012 R2 Essentials</td>
+<td>KNC87-3J2TX-XB4WP-VCPJV-M4FWM</td>
+</tr>
+</tbody></table>
+<h2 id="Windows-Server-2012-和-Windows-8"><a href="#Windows-Server-2012-和-Windows-8" class="headerlink" title="Windows Server 2012 和 Windows 8"></a>Windows Server 2012 和 Windows 8</h2><table>
+<thead>
+<tr>
+<th>操作系统</th>
+<th>KMS激活序列号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Windows 8 Professional</td>
+<td>NG4HW-VH26C-733KW-K6F98-J8CK4</td>
+</tr>
+<tr>
+<td>Windows 8 Professional N</td>
+<td>XCVCF-2NXM9-723PB-MHCB7-2RYQQ</td>
+</tr>
+<tr>
+<td>Windows 8 Enterprise</td>
+<td>32JNW-9KQ84-P47T8-D8GGY-CWCK7</td>
+</tr>
+<tr>
+<td>Windows 8 Enterprise N</td>
+<td>JMNMF-RHW7P-DMY6X-RF3DR-X2BQT</td>
+</tr>
+<tr>
+<td>Windows Server 2012</td>
+<td>BN3D2-R7TKB-3YPBD-8DRP2-27GG4</td>
+</tr>
+<tr>
+<td>Windows Server 2012 N</td>
+<td>8N2M2-HWPGY-7PGT9-HGDD8-GVGGY</td>
+</tr>
+<tr>
+<td>Windows Server 2012 Single Language</td>
+<td>2WN2H-YGCQR-KFX6K-CD6TF-84YXQ</td>
+</tr>
+<tr>
+<td>Windows Server 2012 Country Specific</td>
+<td>4K36P-JN4VD-GDC6V-KDT89-DYFKP</td>
+</tr>
+<tr>
+<td>Windows Server 2012 Server Standard</td>
+<td>XC9B7-NBPP2-83J2H-RHMBY-92BT4</td>
+</tr>
+<tr>
+<td>Windows Server 2012 MultiPoint Standard</td>
+<td>HM7DN-YVMH3-46JC3-XYTG7-CYQJJ</td>
+</tr>
+<tr>
+<td>Windows Server 2012 MultiPoint Premium</td>
+<td>XNH6W-2V9GX-RGJ4K-Y8X6F-QGJ2G</td>
+</tr>
+<tr>
+<td>Windows Server 2012 Datacenter</td>
+<td>48HP8-DN98B-MYWDG-T2DCC-8W83P</td>
+</tr>
+</tbody></table>
+<h2 id="Windows-7-and-Windows-Server-2008-R2"><a href="#Windows-7-and-Windows-Server-2008-R2" class="headerlink" title="Windows 7 and Windows Server 2008 R2"></a>Windows 7 and Windows Server 2008 R2</h2><table>
+<thead>
+<tr>
+<th>操作系统</th>
+<th>KMS激活序列号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Windows 7 Professional</td>
+<td>FJ82H-XT6CR-J8D7P-XQJJ2-GPDD4</td>
+</tr>
+<tr>
+<td>Windows 7 Professional N</td>
+<td>MRPKT-YTG23-K7D7T-X2JMM-QY7MG</td>
+</tr>
+<tr>
+<td>Windows 7 Professional E</td>
+<td>W82YF-2Q76Y-63HXB-FGJG9-GF7QX</td>
+</tr>
+<tr>
+<td>Windows 7 Enterprise</td>
+<td>33PXH-7Y6KF-2VJC9-XBBR8-HVTHH</td>
+</tr>
+<tr>
+<td>Windows 7 Enterprise N</td>
+<td>YDRBP-3D83W-TY26F-D46B2-XCKRJ</td>
+</tr>
+<tr>
+<td>Windows 7 Enterprise E</td>
+<td>C29WB-22CC8-VJ326-GHFJW-H9DH4</td>
+</tr>
+<tr>
+<td>Windows Server 2008 R2 Web</td>
+<td>6TPJF-RBVHG-WBW2R-86QPH-6RTM4</td>
+</tr>
+<tr>
+<td>Windows Server 2008 R2 HPC edition</td>
+<td>TT8MH-CG224-D3D7Q-498W2-9QCTX</td>
+</tr>
+<tr>
+<td>Windows Server 2008 R2 Standard</td>
+<td>YC6KT-GKW9T-YTKYR-T4X34-R7VHC</td>
+</tr>
+<tr>
+<td>Windows Server 2008 R2 Enterprise</td>
+<td>489J6-VHDMP-X63PK-3K798-CPX3Y</td>
+</tr>
+<tr>
+<td>Windows Server 2008 R2 Datacenter</td>
+<td>74YFP-3QFB3-KQT8W-PMXWJ-7M648</td>
+</tr>
+<tr>
+<td>Windows Server 2008 R2 for Itanium-based Systems</td>
+<td>GT63C-RJFQ3-4GMB6-BRFB9-CB83V</td>
+</tr>
+</tbody></table>
+<h2 id="Windows-Vista-and-Windows-Server-2008"><a href="#Windows-Vista-and-Windows-Server-2008" class="headerlink" title="Windows Vista and Windows Server 2008"></a>Windows Vista and Windows Server 2008</h2><table>
+<thead>
+<tr>
+<th>操作系统</th>
+<th>KMS激活序列号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Windows Vista Business</td>
+<td>YFKBB-PQJJV-G996G-VWGXY-2V3X8</td>
+</tr>
+<tr>
+<td>Windows Vista Business N</td>
+<td>HMBQG-8H2RH-C77VX-27R82-VMQBT</td>
+</tr>
+<tr>
+<td>Windows Vista Enterprise</td>
+<td>VKK3X-68KWM-X2YGT-QR4M6-4BWMV</td>
+</tr>
+<tr>
+<td>Windows Vista Enterprise N</td>
+<td>VTC42-BM838-43QHV-84HX6-XJXKV</td>
+</tr>
+<tr>
+<td>Windows Web Server 2008</td>
+<td>WYR28-R7TFJ-3X2YQ-YCY4H-M249D</td>
+</tr>
+<tr>
+<td>Windows Server 2008 Standard</td>
+<td>TM24T-X9RMF-VWXK6-X8JC9-BFGM2</td>
+</tr>
+<tr>
+<td>Windows Server 2008 Standard without Hyper-V</td>
+<td>W7VD6-7JFBR-RX26B-YKQ3Y-6FFFJ</td>
+</tr>
+<tr>
+<td>Windows Server 2008 Enterprise</td>
+<td>YQGMW-MPWTJ-34KDK-48M3W-X4Q6V</td>
+</tr>
+<tr>
+<td>Windows Server 2008 Enterprise without Hyper-V</td>
+<td>39BXF-X8Q23-P2WWT-38T2F-G3FPG</td>
+</tr>
+<tr>
+<td>Windows Server 2008 HPC</td>
+<td>RCTX3-KWVHP-BR6TB-RB6DM-6X7HP</td>
+</tr>
+<tr>
+<td>Windows Server 2008 Datacenter</td>
+<td>7M67G-PC374-GR742-YH8V4-TCBY3</td>
+</tr>
+<tr>
+<td>Windows Server 2008 Datacenter without Hyper-V</td>
+<td>22XQ2-VRXRG-P8D42-K34TD-G3QQC</td>
+</tr>
+<tr>
+<td>Windows Server 2008 for Itanium-Based Systems</td>
+<td>4DWFP-JF3DJ-B7DTH-78FJB-PDRHK</td>
+</tr>
+</tbody></table>
+]]></content>
+  </entry>
+  <entry>
+    <title>将nodered里的电量数据存储到influxdb,方便在grafana展示</title>
+    <url>/2022/05/29/nodered-influxdb/</url>
+    <content><![CDATA[<h1 id="将nodered里的电量数据存储到influxdb-方便在grafana展示"><a href="#将nodered里的电量数据存储到influxdb-方便在grafana展示" class="headerlink" title="将nodered里的电量数据存储到influxdb,方便在grafana展示"></a>将nodered里的电量数据存储到influxdb,方便在grafana展示</h1><p>首先在你的nodered里安装node-red-contrib-influxdb节点:</p>
+<p><img src="/nodered-influxdb/image-20220529223344883.png" alt="image-20220529223344883"></p>
+<p>然后导入以下流程:</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">[</span><span class="punctuation">&#123;</span><span class="attr">&quot;id&quot;</span><span class="punctuation">:</span><span class="string">&quot;06263bcac5a42fd1&quot;</span><span class="punctuation">,</span><span class="attr">&quot;type&quot;</span><span class="punctuation">:</span><span class="string">&quot;tab&quot;</span><span class="punctuation">,</span><span class="attr">&quot;label&quot;</span><span class="punctuation">:</span><span class="string">&quot;influxdb_DEMO&quot;</span><span class="punctuation">,</span><span class="attr">&quot;disabled&quot;</span><span class="punctuation">:</span><span class="keyword">false</span><span class="punctuation">,</span><span class="attr">&quot;info&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;env&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;id&quot;</span><span class="punctuation">:</span><span class="string">&quot;9c64fad3bf02f85f&quot;</span><span class="punctuation">,</span><span class="attr">&quot;type&quot;</span><span class="punctuation">:</span><span class="string">&quot;debug&quot;</span><span class="punctuation">,</span><span class="attr">&quot;z&quot;</span><span class="punctuation">:</span><span class="string">&quot;06263bcac5a42fd1&quot;</span><span class="punctuation">,</span><span class="attr">&quot;name&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;active&quot;</span><span class="punctuation">:</span><span class="keyword">true</span><span class="punctuation">,</span><span class="attr">&quot;tosidebar&quot;</span><span class="punctuation">:</span><span class="keyword">true</span><span class="punctuation">,</span><span class="attr">&quot;console&quot;</span><span class="punctuation">:</span><span class="keyword">false</span><span class="punctuation">,</span><span class="attr">&quot;tostatus&quot;</span><span class="punctuation">:</span><span class="keyword">false</span><span class="punctuation">,</span><span class="attr">&quot;complete&quot;</span><span class="punctuation">:</span><span class="string">&quot;payload&quot;</span><span class="punctuation">,</span><span class="attr">&quot;targetType&quot;</span><span class="punctuation">:</span><span class="string">&quot;msg&quot;</span><span class="punctuation">,</span><span class="attr">&quot;statusVal&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;statusType&quot;</span><span class="punctuation">:</span><span class="string">&quot;auto&quot;</span><span class="punctuation">,</span><span class="attr">&quot;x&quot;</span><span class="punctuation">:</span><span class="number">770</span><span class="punctuation">,</span><span class="attr">&quot;y&quot;</span><span class="punctuation">:</span><span class="number">100</span><span class="punctuation">,</span><span class="attr">&quot;wires&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;id&quot;</span><span class="punctuation">:</span><span class="string">&quot;23b56d4e8c55a864&quot;</span><span class="punctuation">,</span><span class="attr">&quot;type&quot;</span><span class="punctuation">:</span><span class="string">&quot;influxdb in&quot;</span><span class="punctuation">,</span><span class="attr">&quot;z&quot;</span><span class="punctuation">:</span><span class="string">&quot;06263bcac5a42fd1&quot;</span><span class="punctuation">,</span><span class="attr">&quot;influxdb&quot;</span><span class="punctuation">:</span><span class="string">&quot;ed5228586bb6bef2&quot;</span><span class="punctuation">,</span><span class="attr">&quot;name&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;query&quot;</span><span class="punctuation">:</span><span class="string">&quot;SELECT * FROM test&quot;</span><span class="punctuation">,</span><span class="attr">&quot;rawOutput&quot;</span><span class="punctuation">:</span><span class="keyword">false</span><span class="punctuation">,</span><span class="attr">&quot;precision&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;retentionPolicy&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;org&quot;</span><span class="punctuation">:</span><span class="string">&quot;my-org&quot;</span><span class="punctuation">,</span><span class="attr">&quot;x&quot;</span><span class="punctuation">:</span><span class="number">460</span><span class="punctuation">,</span><span class="attr">&quot;y&quot;</span><span class="punctuation">:</span><span class="number">100</span><span class="punctuation">,</span><span class="attr">&quot;wires&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">[</span><span class="string">&quot;9c64fad3bf02f85f&quot;</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;id&quot;</span><span class="punctuation">:</span><span class="string">&quot;056c109e535c2d7f&quot;</span><span class="punctuation">,</span><span class="attr">&quot;type&quot;</span><span class="punctuation">:</span><span class="string">&quot;inject&quot;</span><span class="punctuation">,</span><span class="attr">&quot;z&quot;</span><span class="punctuation">:</span><span class="string">&quot;06263bcac5a42fd1&quot;</span><span class="punctuation">,</span><span class="attr">&quot;name&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;props&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">&#123;</span><span class="attr">&quot;p&quot;</span><span class="punctuation">:</span><span class="string">&quot;payload&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;p&quot;</span><span class="punctuation">:</span><span class="string">&quot;topic&quot;</span><span class="punctuation">,</span><span class="attr">&quot;vt&quot;</span><span class="punctuation">:</span><span class="string">&quot;str&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;repeat&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;crontab&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;once&quot;</span><span class="punctuation">:</span><span class="keyword">false</span><span class="punctuation">,</span><span class="attr">&quot;onceDelay&quot;</span><span class="punctuation">:</span><span class="number">0.1</span><span class="punctuation">,</span><span class="attr">&quot;topic&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;payload&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;payloadType&quot;</span><span class="punctuation">:</span><span class="string">&quot;date&quot;</span><span class="punctuation">,</span><span class="attr">&quot;x&quot;</span><span class="punctuation">:</span><span class="number">180</span><span class="punctuation">,</span><span class="attr">&quot;y&quot;</span><span class="punctuation">:</span><span class="number">100</span><span class="punctuation">,</span><span class="attr">&quot;wires&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">[</span><span class="string">&quot;23b56d4e8c55a864&quot;</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;id&quot;</span><span class="punctuation">:</span><span class="string">&quot;134258e1d6cb1824&quot;</span><span class="punctuation">,</span><span class="attr">&quot;type&quot;</span><span class="punctuation">:</span><span class="string">&quot;influxdb batch&quot;</span><span class="punctuation">,</span><span class="attr">&quot;z&quot;</span><span class="punctuation">:</span><span class="string">&quot;06263bcac5a42fd1&quot;</span><span class="punctuation">,</span><span class="attr">&quot;influxdb&quot;</span><span class="punctuation">:</span><span class="string">&quot;ed5228586bb6bef2&quot;</span><span class="punctuation">,</span><span class="attr">&quot;precision&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;retentionPolicy&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;name&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;database&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;retentionPolicyV18Flux&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;org&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;bucket&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;x&quot;</span><span class="punctuation">:</span><span class="number">840</span><span class="punctuation">,</span><span class="attr">&quot;y&quot;</span><span class="punctuation">:</span><span class="number">340</span><span class="punctuation">,</span><span class="attr">&quot;wires&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;id&quot;</span><span class="punctuation">:</span><span class="string">&quot;9276fc288ef9b7da&quot;</span><span class="punctuation">,</span><span class="attr">&quot;type&quot;</span><span class="punctuation">:</span><span class="string">&quot;function&quot;</span><span class="punctuation">,</span><span class="attr">&quot;z&quot;</span><span class="punctuation">:</span><span class="string">&quot;06263bcac5a42fd1&quot;</span><span class="punctuation">,</span><span class="attr">&quot;name&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;func&quot;</span><span class="punctuation">:</span><span class="string">&quot;var value_tmp = msg.payload;\nvar measurement_tmp = msg.measurement;\nvar friendly_name_str_tmp = msg.name;\nfriendly_name_str_tmp=friendly_name_str_tmp.replace(/ +/g, &#x27;_&#x27;); \nvar entity_id_tmp = friendly_name_str_tmp.toLowerCase();\n//var entity_id_tmp = msg.entity_id;\n//var friendly_name_str_tmp = entity_id_tmp;\n\n//default\nvar device_class_str_tmp = \&quot;\&quot;;\nvar domain_tmp = \&quot;sensor\&quot;;\nvar state_class_str_tmp = \&quot;measurement\&quot;;\n    \nif(measurement_tmp == \&quot;V\&quot;)&#123;\n    device_class_str_tmp = \&quot;voltage\&quot;;\n    domain_tmp = \&quot;sensor\&quot;;\n    state_class_str_tmp = \&quot;measurement\&quot;;\n&#125;\nif(measurement_tmp == \&quot;A\&quot;)&#123;\n    device_class_str_tmp = \&quot;current\&quot;;\n    domain_tmp = \&quot;sensor\&quot;;\n    state_class_str_tmp = \&quot;measurement\&quot;;\n&#125;\nif(measurement_tmp == \&quot;W\&quot;)&#123;\n    device_class_str_tmp = \&quot;power\&quot;;\n    domain_tmp = \&quot;sensor\&quot;;\n    state_class_str_tmp = \&quot;measurement\&quot;;\n&#125;\nif(measurement_tmp == \&quot;kWh\&quot;)&#123;\n    device_class_str_tmp = \&quot;energy\&quot;;\n    domain_tmp = \&quot;sensor\&quot;;\n    state_class_str_tmp = \&quot;total_increasing\&quot;;\n&#125;\nif(measurement_tmp == \&quot;pf\&quot;)&#123;\n    measurement_tmp = \&quot;state\&quot;\n    device_class_str_tmp = \&quot;power_factor\&quot;;\n    domain_tmp = \&quot;sensor\&quot;;\n    state_class_str_tmp = \&quot;measurement\&quot;;\n&#125;\nif(measurement_tmp == \&quot;Hz\&quot;)&#123;\n    device_class_str_tmp = \&quot;frequency\&quot;;\n    domain_tmp = \&quot;sensor\&quot;;\n    state_class_str_tmp = \&quot;measurement\&quot;;\n&#125;\nif(measurement_tmp == \&quot;\&quot;)&#123;\n    measurement_tmp = \&quot;state\&quot;\n    device_class_str_tmp = \&quot;\&quot;;\n    domain_tmp = \&quot;sensor\&quot;;\n    state_class_str_tmp = \&quot;measurement\&quot;;\n&#125;\nif(measurement_tmp == undefined)&#123;\n    measurement_tmp = \&quot;state\&quot;\n    device_class_str_tmp = \&quot;\&quot;;\n    domain_tmp = \&quot;sensor\&quot;;\n    state_class_str_tmp = \&quot;measurement\&quot;;\n&#125;\n\nmsg.payload = [\n    &#123;\n        measurement: measurement_tmp,\n        fields: &#123;\n            \&quot;device_class_str\&quot;: device_class_str_tmp,\n            \&quot;friendly_name_str\&quot;: friendly_name_str_tmp,\n            \&quot;state_class_str\&quot;: state_class_str_tmp,\n            \&quot;value\&quot;: value_tmp\n        &#125;,\n        tags:&#123;\n            \&quot;domain\&quot;: domain_tmp,\n            \&quot;entity_id\&quot;: entity_id_tmp\n        &#125;,\n        timestamp: new Date()\n    &#125;\n];\n\nreturn msg;\n&quot;</span><span class="punctuation">,</span><span class="attr">&quot;outputs&quot;</span><span class="punctuation">:</span><span class="number">1</span><span class="punctuation">,</span><span class="attr">&quot;noerr&quot;</span><span class="punctuation">:</span><span class="number">0</span><span class="punctuation">,</span><span class="attr">&quot;initialize&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;finalize&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;libs&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;x&quot;</span><span class="punctuation">:</span><span class="number">590</span><span class="punctuation">,</span><span class="attr">&quot;y&quot;</span><span class="punctuation">:</span><span class="number">340</span><span class="punctuation">,</span><span class="attr">&quot;wires&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">[</span><span class="string">&quot;2554a81894bac719&quot;</span><span class="punctuation">,</span><span class="string">&quot;134258e1d6cb1824&quot;</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;id&quot;</span><span class="punctuation">:</span><span class="string">&quot;4cf70a8d60699c14&quot;</span><span class="punctuation">,</span><span class="attr">&quot;type&quot;</span><span class="punctuation">:</span><span class="string">&quot;function&quot;</span><span class="punctuation">,</span><span class="attr">&quot;z&quot;</span><span class="punctuation">:</span><span class="string">&quot;06263bcac5a42fd1&quot;</span><span class="punctuation">,</span><span class="attr">&quot;name&quot;</span><span class="punctuation">:</span><span class="string">&quot;Voltage&quot;</span><span class="punctuation">,</span><span class="attr">&quot;func&quot;</span><span class="punctuation">:</span><span class="string">&quot;\nmsg.measurement = \&quot;V\&quot;;\nmsg.name = \&quot;Home Meter Voltage\&quot;;\n\nreturn msg;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;outputs&quot;</span><span class="punctuation">:</span><span class="number">1</span><span class="punctuation">,</span><span class="attr">&quot;noerr&quot;</span><span class="punctuation">:</span><span class="number">0</span><span class="punctuation">,</span><span class="attr">&quot;initialize&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;finalize&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;libs&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;x&quot;</span><span class="punctuation">:</span><span class="number">360</span><span class="punctuation">,</span><span class="attr">&quot;y&quot;</span><span class="punctuation">:</span><span class="number">180</span><span class="punctuation">,</span><span class="attr">&quot;wires&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">[</span><span class="string">&quot;9276fc288ef9b7da&quot;</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;id&quot;</span><span class="punctuation">:</span><span class="string">&quot;2554a81894bac719&quot;</span><span class="punctuation">,</span><span class="attr">&quot;type&quot;</span><span class="punctuation">:</span><span class="string">&quot;debug&quot;</span><span class="punctuation">,</span><span class="attr">&quot;z&quot;</span><span class="punctuation">:</span><span class="string">&quot;06263bcac5a42fd1&quot;</span><span class="punctuation">,</span><span class="attr">&quot;name&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;active&quot;</span><span class="punctuation">:</span><span class="keyword">true</span><span class="punctuation">,</span><span class="attr">&quot;tosidebar&quot;</span><span class="punctuation">:</span><span class="keyword">true</span><span class="punctuation">,</span><span class="attr">&quot;console&quot;</span><span class="punctuation">:</span><span class="keyword">false</span><span class="punctuation">,</span><span class="attr">&quot;tostatus&quot;</span><span class="punctuation">:</span><span class="keyword">false</span><span class="punctuation">,</span><span class="attr">&quot;complete&quot;</span><span class="punctuation">:</span><span class="string">&quot;payload&quot;</span><span class="punctuation">,</span><span class="attr">&quot;targetType&quot;</span><span class="punctuation">:</span><span class="string">&quot;msg&quot;</span><span class="punctuation">,</span><span class="attr">&quot;statusVal&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;statusType&quot;</span><span class="punctuation">:</span><span class="string">&quot;auto&quot;</span><span class="punctuation">,</span><span class="attr">&quot;x&quot;</span><span class="punctuation">:</span><span class="number">750</span><span class="punctuation">,</span><span class="attr">&quot;y&quot;</span><span class="punctuation">:</span><span class="number">280</span><span class="punctuation">,</span><span class="attr">&quot;wires&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;id&quot;</span><span class="punctuation">:</span><span class="string">&quot;45a9208a9f8168c4&quot;</span><span class="punctuation">,</span><span class="attr">&quot;type&quot;</span><span class="punctuation">:</span><span class="string">&quot;inject&quot;</span><span class="punctuation">,</span><span class="attr">&quot;z&quot;</span><span class="punctuation">:</span><span class="string">&quot;06263bcac5a42fd1&quot;</span><span class="punctuation">,</span><span class="attr">&quot;name&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;props&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">&#123;</span><span class="attr">&quot;p&quot;</span><span class="punctuation">:</span><span class="string">&quot;payload&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;p&quot;</span><span class="punctuation">:</span><span class="string">&quot;topic&quot;</span><span class="punctuation">,</span><span class="attr">&quot;vt&quot;</span><span class="punctuation">:</span><span class="string">&quot;str&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;repeat&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;crontab&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;once&quot;</span><span class="punctuation">:</span><span class="keyword">false</span><span class="punctuation">,</span><span class="attr">&quot;onceDelay&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;topic&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;payload&quot;</span><span class="punctuation">:</span><span class="string">&quot;230&quot;</span><span class="punctuation">,</span><span class="attr">&quot;payloadType&quot;</span><span class="punctuation">:</span><span class="string">&quot;num&quot;</span><span class="punctuation">,</span><span class="attr">&quot;x&quot;</span><span class="punctuation">:</span><span class="number">190</span><span class="punctuation">,</span><span class="attr">&quot;y&quot;</span><span class="punctuation">:</span><span class="number">180</span><span class="punctuation">,</span><span class="attr">&quot;wires&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">[</span><span class="string">&quot;4cf70a8d60699c14&quot;</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;id&quot;</span><span class="punctuation">:</span><span class="string">&quot;64f1429aaa46c1f5&quot;</span><span class="punctuation">,</span><span class="attr">&quot;type&quot;</span><span class="punctuation">:</span><span class="string">&quot;function&quot;</span><span class="punctuation">,</span><span class="attr">&quot;z&quot;</span><span class="punctuation">:</span><span class="string">&quot;06263bcac5a42fd1&quot;</span><span class="punctuation">,</span><span class="attr">&quot;name&quot;</span><span class="punctuation">:</span><span class="string">&quot;Current&quot;</span><span class="punctuation">,</span><span class="attr">&quot;func&quot;</span><span class="punctuation">:</span><span class="string">&quot;\nmsg.measurement = \&quot;A\&quot;;\nmsg.name = \&quot;Home Meter Current\&quot;;\n\nreturn msg;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;outputs&quot;</span><span class="punctuation">:</span><span class="number">1</span><span class="punctuation">,</span><span class="attr">&quot;noerr&quot;</span><span class="punctuation">:</span><span class="number">0</span><span class="punctuation">,</span><span class="attr">&quot;initialize&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;finalize&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;libs&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;x&quot;</span><span class="punctuation">:</span><span class="number">360</span><span class="punctuation">,</span><span class="attr">&quot;y&quot;</span><span class="punctuation">:</span><span class="number">240</span><span class="punctuation">,</span><span class="attr">&quot;wires&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">[</span><span class="string">&quot;9276fc288ef9b7da&quot;</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;id&quot;</span><span class="punctuation">:</span><span class="string">&quot;ad42e8764b77a9f9&quot;</span><span class="punctuation">,</span><span class="attr">&quot;type&quot;</span><span class="punctuation">:</span><span class="string">&quot;function&quot;</span><span class="punctuation">,</span><span class="attr">&quot;z&quot;</span><span class="punctuation">:</span><span class="string">&quot;06263bcac5a42fd1&quot;</span><span class="punctuation">,</span><span class="attr">&quot;name&quot;</span><span class="punctuation">:</span><span class="string">&quot;Power&quot;</span><span class="punctuation">,</span><span class="attr">&quot;func&quot;</span><span class="punctuation">:</span><span class="string">&quot;\nmsg.measurement = \&quot;W\&quot;;\nmsg.name = \&quot;Home Meter Power\&quot;;\n\nreturn msg;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;outputs&quot;</span><span class="punctuation">:</span><span class="number">1</span><span class="punctuation">,</span><span class="attr">&quot;noerr&quot;</span><span class="punctuation">:</span><span class="number">0</span><span class="punctuation">,</span><span class="attr">&quot;initialize&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;finalize&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;libs&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;x&quot;</span><span class="punctuation">:</span><span class="number">350</span><span class="punctuation">,</span><span class="attr">&quot;y&quot;</span><span class="punctuation">:</span><span class="number">300</span><span class="punctuation">,</span><span class="attr">&quot;wires&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">[</span><span class="string">&quot;9276fc288ef9b7da&quot;</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;id&quot;</span><span class="punctuation">:</span><span class="string">&quot;0984f1e57b29cf17&quot;</span><span class="punctuation">,</span><span class="attr">&quot;type&quot;</span><span class="punctuation">:</span><span class="string">&quot;function&quot;</span><span class="punctuation">,</span><span class="attr">&quot;z&quot;</span><span class="punctuation">:</span><span class="string">&quot;06263bcac5a42fd1&quot;</span><span class="punctuation">,</span><span class="attr">&quot;name&quot;</span><span class="punctuation">:</span><span class="string">&quot;Energy&quot;</span><span class="punctuation">,</span><span class="attr">&quot;func&quot;</span><span class="punctuation">:</span><span class="string">&quot;\nmsg.measurement = \&quot;kWh\&quot;;\nmsg.name = \&quot;Home Meter Energy\&quot;;\n\nreturn msg;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;outputs&quot;</span><span class="punctuation">:</span><span class="number">1</span><span class="punctuation">,</span><span class="attr">&quot;noerr&quot;</span><span class="punctuation">:</span><span class="number">0</span><span class="punctuation">,</span><span class="attr">&quot;initialize&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;finalize&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;libs&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;x&quot;</span><span class="punctuation">:</span><span class="number">360</span><span class="punctuation">,</span><span class="attr">&quot;y&quot;</span><span class="punctuation">:</span><span class="number">360</span><span class="punctuation">,</span><span class="attr">&quot;wires&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">[</span><span class="string">&quot;9276fc288ef9b7da&quot;</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;id&quot;</span><span class="punctuation">:</span><span class="string">&quot;1e53296af2df1e4d&quot;</span><span class="punctuation">,</span><span class="attr">&quot;type&quot;</span><span class="punctuation">:</span><span class="string">&quot;function&quot;</span><span class="punctuation">,</span><span class="attr">&quot;z&quot;</span><span class="punctuation">:</span><span class="string">&quot;06263bcac5a42fd1&quot;</span><span class="punctuation">,</span><span class="attr">&quot;name&quot;</span><span class="punctuation">:</span><span class="string">&quot;PF&quot;</span><span class="punctuation">,</span><span class="attr">&quot;func&quot;</span><span class="punctuation">:</span><span class="string">&quot;\nmsg.measurement = \&quot;pf\&quot;;\nmsg.name = \&quot;Home Meter PF\&quot;;\n\nreturn msg;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;outputs&quot;</span><span class="punctuation">:</span><span class="number">1</span><span class="punctuation">,</span><span class="attr">&quot;noerr&quot;</span><span class="punctuation">:</span><span class="number">0</span><span class="punctuation">,</span><span class="attr">&quot;initialize&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;finalize&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;libs&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;x&quot;</span><span class="punctuation">:</span><span class="number">350</span><span class="punctuation">,</span><span class="attr">&quot;y&quot;</span><span class="punctuation">:</span><span class="number">420</span><span class="punctuation">,</span><span class="attr">&quot;wires&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">[</span><span class="string">&quot;9276fc288ef9b7da&quot;</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;id&quot;</span><span class="punctuation">:</span><span class="string">&quot;69e0cf70c92829f9&quot;</span><span class="punctuation">,</span><span class="attr">&quot;type&quot;</span><span class="punctuation">:</span><span class="string">&quot;function&quot;</span><span class="punctuation">,</span><span class="attr">&quot;z&quot;</span><span class="punctuation">:</span><span class="string">&quot;06263bcac5a42fd1&quot;</span><span class="punctuation">,</span><span class="attr">&quot;name&quot;</span><span class="punctuation">:</span><span class="string">&quot;Frequency&quot;</span><span class="punctuation">,</span><span class="attr">&quot;func&quot;</span><span class="punctuation">:</span><span class="string">&quot;\nmsg.measurement = \&quot;Hz\&quot;;\nmsg.name = \&quot;Home Meter Frequency\&quot;;\n\nreturn msg;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;outputs&quot;</span><span class="punctuation">:</span><span class="number">1</span><span class="punctuation">,</span><span class="attr">&quot;noerr&quot;</span><span class="punctuation">:</span><span class="number">0</span><span class="punctuation">,</span><span class="attr">&quot;initialize&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;finalize&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;libs&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;x&quot;</span><span class="punctuation">:</span><span class="number">370</span><span class="punctuation">,</span><span class="attr">&quot;y&quot;</span><span class="punctuation">:</span><span class="number">480</span><span class="punctuation">,</span><span class="attr">&quot;wires&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">[</span><span class="string">&quot;9276fc288ef9b7da&quot;</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;id&quot;</span><span class="punctuation">:</span><span class="string">&quot;9cd9bfcba66aa5ce&quot;</span><span class="punctuation">,</span><span class="attr">&quot;type&quot;</span><span class="punctuation">:</span><span class="string">&quot;inject&quot;</span><span class="punctuation">,</span><span class="attr">&quot;z&quot;</span><span class="punctuation">:</span><span class="string">&quot;06263bcac5a42fd1&quot;</span><span class="punctuation">,</span><span class="attr">&quot;name&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;props&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">&#123;</span><span class="attr">&quot;p&quot;</span><span class="punctuation">:</span><span class="string">&quot;payload&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;p&quot;</span><span class="punctuation">:</span><span class="string">&quot;topic&quot;</span><span class="punctuation">,</span><span class="attr">&quot;vt&quot;</span><span class="punctuation">:</span><span class="string">&quot;str&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;repeat&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;crontab&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;once&quot;</span><span class="punctuation">:</span><span class="keyword">false</span><span class="punctuation">,</span><span class="attr">&quot;onceDelay&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;topic&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;payload&quot;</span><span class="punctuation">:</span><span class="string">&quot;23.6&quot;</span><span class="punctuation">,</span><span class="attr">&quot;payloadType&quot;</span><span class="punctuation">:</span><span class="string">&quot;num&quot;</span><span class="punctuation">,</span><span class="attr">&quot;x&quot;</span><span class="punctuation">:</span><span class="number">190</span><span class="punctuation">,</span><span class="attr">&quot;y&quot;</span><span class="punctuation">:</span><span class="number">240</span><span class="punctuation">,</span><span class="attr">&quot;wires&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">[</span><span class="string">&quot;64f1429aaa46c1f5&quot;</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;id&quot;</span><span class="punctuation">:</span><span class="string">&quot;c4339117cfad39ab&quot;</span><span class="punctuation">,</span><span class="attr">&quot;type&quot;</span><span class="punctuation">:</span><span class="string">&quot;inject&quot;</span><span class="punctuation">,</span><span class="attr">&quot;z&quot;</span><span class="punctuation">:</span><span class="string">&quot;06263bcac5a42fd1&quot;</span><span class="punctuation">,</span><span class="attr">&quot;name&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;props&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">&#123;</span><span class="attr">&quot;p&quot;</span><span class="punctuation">:</span><span class="string">&quot;payload&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;p&quot;</span><span class="punctuation">:</span><span class="string">&quot;topic&quot;</span><span class="punctuation">,</span><span class="attr">&quot;vt&quot;</span><span class="punctuation">:</span><span class="string">&quot;str&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;repeat&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;crontab&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;once&quot;</span><span class="punctuation">:</span><span class="keyword">false</span><span class="punctuation">,</span><span class="attr">&quot;onceDelay&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;topic&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;payload&quot;</span><span class="punctuation">:</span><span class="string">&quot;1234&quot;</span><span class="punctuation">,</span><span class="attr">&quot;payloadType&quot;</span><span class="punctuation">:</span><span class="string">&quot;num&quot;</span><span class="punctuation">,</span><span class="attr">&quot;x&quot;</span><span class="punctuation">:</span><span class="number">190</span><span class="punctuation">,</span><span class="attr">&quot;y&quot;</span><span class="punctuation">:</span><span class="number">300</span><span class="punctuation">,</span><span class="attr">&quot;wires&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">[</span><span class="string">&quot;ad42e8764b77a9f9&quot;</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;id&quot;</span><span class="punctuation">:</span><span class="string">&quot;e9f633395adefd98&quot;</span><span class="punctuation">,</span><span class="attr">&quot;type&quot;</span><span class="punctuation">:</span><span class="string">&quot;inject&quot;</span><span class="punctuation">,</span><span class="attr">&quot;z&quot;</span><span class="punctuation">:</span><span class="string">&quot;06263bcac5a42fd1&quot;</span><span class="punctuation">,</span><span class="attr">&quot;name&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;props&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">&#123;</span><span class="attr">&quot;p&quot;</span><span class="punctuation">:</span><span class="string">&quot;payload&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;p&quot;</span><span class="punctuation">:</span><span class="string">&quot;topic&quot;</span><span class="punctuation">,</span><span class="attr">&quot;vt&quot;</span><span class="punctuation">:</span><span class="string">&quot;str&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;repeat&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;crontab&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;once&quot;</span><span class="punctuation">:</span><span class="keyword">false</span><span class="punctuation">,</span><span class="attr">&quot;onceDelay&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;topic&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;payload&quot;</span><span class="punctuation">:</span><span class="string">&quot;632.123&quot;</span><span class="punctuation">,</span><span class="attr">&quot;payloadType&quot;</span><span class="punctuation">:</span><span class="string">&quot;num&quot;</span><span class="punctuation">,</span><span class="attr">&quot;x&quot;</span><span class="punctuation">:</span><span class="number">200</span><span class="punctuation">,</span><span class="attr">&quot;y&quot;</span><span class="punctuation">:</span><span class="number">360</span><span class="punctuation">,</span><span class="attr">&quot;wires&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">[</span><span class="string">&quot;0984f1e57b29cf17&quot;</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;id&quot;</span><span class="punctuation">:</span><span class="string">&quot;f35c64d4dcc7b5bf&quot;</span><span class="punctuation">,</span><span class="attr">&quot;type&quot;</span><span class="punctuation">:</span><span class="string">&quot;inject&quot;</span><span class="punctuation">,</span><span class="attr">&quot;z&quot;</span><span class="punctuation">:</span><span class="string">&quot;06263bcac5a42fd1&quot;</span><span class="punctuation">,</span><span class="attr">&quot;name&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;props&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">&#123;</span><span class="attr">&quot;p&quot;</span><span class="punctuation">:</span><span class="string">&quot;payload&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;p&quot;</span><span class="punctuation">:</span><span class="string">&quot;topic&quot;</span><span class="punctuation">,</span><span class="attr">&quot;vt&quot;</span><span class="punctuation">:</span><span class="string">&quot;str&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;repeat&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;crontab&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;once&quot;</span><span class="punctuation">:</span><span class="keyword">false</span><span class="punctuation">,</span><span class="attr">&quot;onceDelay&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;topic&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;payload&quot;</span><span class="punctuation">:</span><span class="string">&quot;0.982&quot;</span><span class="punctuation">,</span><span class="attr">&quot;payloadType&quot;</span><span class="punctuation">:</span><span class="string">&quot;num&quot;</span><span class="punctuation">,</span><span class="attr">&quot;x&quot;</span><span class="punctuation">:</span><span class="number">190</span><span class="punctuation">,</span><span class="attr">&quot;y&quot;</span><span class="punctuation">:</span><span class="number">420</span><span class="punctuation">,</span><span class="attr">&quot;wires&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">[</span><span class="string">&quot;1e53296af2df1e4d&quot;</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;id&quot;</span><span class="punctuation">:</span><span class="string">&quot;ca7506d0e53deb88&quot;</span><span class="punctuation">,</span><span class="attr">&quot;type&quot;</span><span class="punctuation">:</span><span class="string">&quot;inject&quot;</span><span class="punctuation">,</span><span class="attr">&quot;z&quot;</span><span class="punctuation">:</span><span class="string">&quot;06263bcac5a42fd1&quot;</span><span class="punctuation">,</span><span class="attr">&quot;name&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;props&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">&#123;</span><span class="attr">&quot;p&quot;</span><span class="punctuation">:</span><span class="string">&quot;payload&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;p&quot;</span><span class="punctuation">:</span><span class="string">&quot;topic&quot;</span><span class="punctuation">,</span><span class="attr">&quot;vt&quot;</span><span class="punctuation">:</span><span class="string">&quot;str&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;repeat&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;crontab&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;once&quot;</span><span class="punctuation">:</span><span class="keyword">false</span><span class="punctuation">,</span><span class="attr">&quot;onceDelay&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;topic&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;payload&quot;</span><span class="punctuation">:</span><span class="string">&quot;49.99&quot;</span><span class="punctuation">,</span><span class="attr">&quot;payloadType&quot;</span><span class="punctuation">:</span><span class="string">&quot;num&quot;</span><span class="punctuation">,</span><span class="attr">&quot;x&quot;</span><span class="punctuation">:</span><span class="number">190</span><span class="punctuation">,</span><span class="attr">&quot;y&quot;</span><span class="punctuation">:</span><span class="number">480</span><span class="punctuation">,</span><span class="attr">&quot;wires&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">[</span><span class="string">&quot;69e0cf70c92829f9&quot;</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;id&quot;</span><span class="punctuation">:</span><span class="string">&quot;c58c3f435f1c7645&quot;</span><span class="punctuation">,</span><span class="attr">&quot;type&quot;</span><span class="punctuation">:</span><span class="string">&quot;function&quot;</span><span class="punctuation">,</span><span class="attr">&quot;z&quot;</span><span class="punctuation">:</span><span class="string">&quot;06263bcac5a42fd1&quot;</span><span class="punctuation">,</span><span class="attr">&quot;name&quot;</span><span class="punctuation">:</span><span class="string">&quot;state&quot;</span><span class="punctuation">,</span><span class="attr">&quot;func&quot;</span><span class="punctuation">:</span><span class="string">&quot;\n//msg.measurement = \&quot;\&quot;;\nmsg.name = \&quot;Home Meter State\&quot;;\n\nreturn msg;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;outputs&quot;</span><span class="punctuation">:</span><span class="number">1</span><span class="punctuation">,</span><span class="attr">&quot;noerr&quot;</span><span class="punctuation">:</span><span class="number">0</span><span class="punctuation">,</span><span class="attr">&quot;initialize&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;finalize&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;libs&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;x&quot;</span><span class="punctuation">:</span><span class="number">350</span><span class="punctuation">,</span><span class="attr">&quot;y&quot;</span><span class="punctuation">:</span><span class="number">540</span><span class="punctuation">,</span><span class="attr">&quot;wires&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">[</span><span class="string">&quot;9276fc288ef9b7da&quot;</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;id&quot;</span><span class="punctuation">:</span><span class="string">&quot;cd7f37a4727c0acf&quot;</span><span class="punctuation">,</span><span class="attr">&quot;type&quot;</span><span class="punctuation">:</span><span class="string">&quot;inject&quot;</span><span class="punctuation">,</span><span class="attr">&quot;z&quot;</span><span class="punctuation">:</span><span class="string">&quot;06263bcac5a42fd1&quot;</span><span class="punctuation">,</span><span class="attr">&quot;name&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;props&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">&#123;</span><span class="attr">&quot;p&quot;</span><span class="punctuation">:</span><span class="string">&quot;payload&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;p&quot;</span><span class="punctuation">:</span><span class="string">&quot;topic&quot;</span><span class="punctuation">,</span><span class="attr">&quot;vt&quot;</span><span class="punctuation">:</span><span class="string">&quot;str&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">]</span><span class="punctuation">,</span><span class="attr">&quot;repeat&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;crontab&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;once&quot;</span><span class="punctuation">:</span><span class="keyword">false</span><span class="punctuation">,</span><span class="attr">&quot;onceDelay&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;topic&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;payload&quot;</span><span class="punctuation">:</span><span class="string">&quot;66&quot;</span><span class="punctuation">,</span><span class="attr">&quot;payloadType&quot;</span><span class="punctuation">:</span><span class="string">&quot;num&quot;</span><span class="punctuation">,</span><span class="attr">&quot;x&quot;</span><span class="punctuation">:</span><span class="number">190</span><span class="punctuation">,</span><span class="attr">&quot;y&quot;</span><span class="punctuation">:</span><span class="number">540</span><span class="punctuation">,</span><span class="attr">&quot;wires&quot;</span><span class="punctuation">:</span><span class="punctuation">[</span><span class="punctuation">[</span><span class="string">&quot;c58c3f435f1c7645&quot;</span><span class="punctuation">]</span><span class="punctuation">]</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;id&quot;</span><span class="punctuation">:</span><span class="string">&quot;ed5228586bb6bef2&quot;</span><span class="punctuation">,</span><span class="attr">&quot;type&quot;</span><span class="punctuation">:</span><span class="string">&quot;influxdb&quot;</span><span class="punctuation">,</span><span class="attr">&quot;hostname&quot;</span><span class="punctuation">:</span><span class="string">&quot;192.168.12.99&quot;</span><span class="punctuation">,</span><span class="attr">&quot;port&quot;</span><span class="punctuation">:</span><span class="string">&quot;8086&quot;</span><span class="punctuation">,</span><span class="attr">&quot;protocol&quot;</span><span class="punctuation">:</span><span class="string">&quot;http&quot;</span><span class="punctuation">,</span><span class="attr">&quot;database&quot;</span><span class="punctuation">:</span><span class="string">&quot;homeassistant&quot;</span><span class="punctuation">,</span><span class="attr">&quot;name&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;usetls&quot;</span><span class="punctuation">:</span><span class="keyword">false</span><span class="punctuation">,</span><span class="attr">&quot;tls&quot;</span><span class="punctuation">:</span><span class="string">&quot;dcf827c4.19bc58&quot;</span><span class="punctuation">,</span><span class="attr">&quot;influxdbVersion&quot;</span><span class="punctuation">:</span><span class="string">&quot;1.x&quot;</span><span class="punctuation">,</span><span class="attr">&quot;url&quot;</span><span class="punctuation">:</span><span class="string">&quot;http://localhost:8086&quot;</span><span class="punctuation">,</span><span class="attr">&quot;rejectUnauthorized&quot;</span><span class="punctuation">:</span><span class="keyword">true</span><span class="punctuation">&#125;</span><span class="punctuation">,</span><span class="punctuation">&#123;</span><span class="attr">&quot;id&quot;</span><span class="punctuation">:</span><span class="string">&quot;dcf827c4.19bc58&quot;</span><span class="punctuation">,</span><span class="attr">&quot;type&quot;</span><span class="punctuation">:</span><span class="string">&quot;tls-config&quot;</span><span class="punctuation">,</span><span class="attr">&quot;name&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;cert&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;key&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;ca&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;certname&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;keyname&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;caname&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;servername&quot;</span><span class="punctuation">:</span><span class="string">&quot;&quot;</span><span class="punctuation">,</span><span class="attr">&quot;verifyservercert&quot;</span><span class="punctuation">:</span><span class="keyword">false</span><span class="punctuation">&#125;</span><span class="punctuation">]</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/nodered-influxdb/image-20220529223513196.png" alt="image-20220529223513196"></p>
+<p>然后就可以在你的grafana里看到对应的数据了:</p>
+<p><img src="/nodered-influxdb/image-20220529223708762.png" alt="image-20220529223708762"></p>
+]]></content>
+      <categories>
+        <category>Smart Home</category>
+      </categories>
+      <tags>
+        <tag>nodered</tag>
+        <tag>influxdb</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Win10微软输⼊法快速输⼊当前时间</title>
+    <url>/2022/05/29/win10_shuru_sj/</url>
+    <content><![CDATA[<h1 id="Win11微软输入法快速输入当前时间"><a href="#Win11微软输入法快速输入当前时间" class="headerlink" title="Win11微软输入法快速输入当前时间"></a>Win11微软输入法快速输入当前时间</h1><p>右键微软输⼊法，选择“设置”；</p>
+<p><img src="/win10_shuru_sj/image-20220529221320919.png" alt="image-20220529221320919"></p>
+<p>选择”词库和自学习”:</p>
+<p><img src="/win10_shuru_sj/image-20220529221525398.png" alt="image-20220529221525398"></p>
+<p>找到“用户定义的短语”，点击“添加或编辑⾃定义短语”；</p>
+<p><img src="/win10_shuru_sj/image-20220529221711771.png" alt="image-20220529221711771"></p>
+<p>点击“添加”，添加自定义短语；</p>
+<p><img src="/win10_shuru_sj/image-20220529221828198.png" alt="image-20220529221828198"></p>
+<p>输入自定义快捷拼⾳，“短语”需要输⼊以下代码，也可以自定义输出格式；</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">%yyyy%-%MM%-%dd% %HH%:%mm%:%ss%</span><br><span class="line">%yyyy%%MM%%dd%_%HH%%mm%%ss%</span><br></pre></td></tr></table></figure>
+
+<p><img src="/win10_shuru_sj/image-20220529222033573.png" alt="image-20220529222033573"></p>
+<p>最后，点击“添加”即可，也可通过同样的方式添加地址等，十分方便。</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2>]]></content>
+      <categories>
+        <category>小技巧</category>
+      </categories>
+      <tags>
+        <tag>输入法</tag>
+        <tag>当前时间</tag>
+      </tags>
+  </entry>
+</search>
