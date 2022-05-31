@@ -44,7 +44,7 @@ description: "使用ESP8266和HLW8032计量模块制作的电表,代码实现通
 
 ## 资源:
 
-HLW8032手册: [HLW8032_C471615.pdf](HLW8032_C471615.pdf)
+HLW8032手册: [HLW8032_C128023.pdf](HLW8032_C128023.pdf)
 
 BOM表和Gerber文件:  [ESP-HLW8032-2.zip](ESP-HLW8032-2.zip)
 
@@ -136,15 +136,15 @@ sensor:
   - platform: cse7766
     #update_interval: 15s
     current:
-      name: "Sonoff Pow R2 Current"
+      name: "${friendly_name} Current"
       filters:
         - lambda: return x / 1.88;
     voltage:
-      name: "Sonoff Pow R2 Voltage"
+      name: "${friendly_name} Voltage"
       filters:
         - lambda: return x * 1.88;
     power:
-      name: "Sonoff Pow R2 Power"
+      name: "${friendly_name} Power"
       filters:
 #        - sliding_window_moving_average:
 #            window_size: 10
@@ -152,7 +152,7 @@ sensor:
 #            send_first_at: 1
         - lambda: return x * 1.88;
     energy:
-      name: "Sonoff Pow R2 Energy"
+      name: "${friendly_name} Energy"
       filters:
         - lambda: return x / 1.88 /1000;
         #- multiply: 0.001
