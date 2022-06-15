@@ -1,6 +1,6 @@
 ---
 title: ESP-HLW8032-Meter电表制作
-date: 2022-05-31 10:13:25
+date: 2022-06-15 10:13:25
 tags:
       - ESP8266
       - HLW8032
@@ -46,7 +46,7 @@ description: "使用ESP8266和HLW8032计量模块制作的电表,代码实现通
 
 HLW8032手册: [HLW8032_C128023.pdf](HLW8032_C128023.pdf)
 
-BOM表和Gerber文件:  [ESP-HLW8032-2.zip](ESP-HLW8032-2.zip)
+BOM表和Gerber文件(厚度1.2mm):  [ESP-HLW8032-b.zip](ESP-HLW8032-b.zip)
 
 罗总框架实现的固件:  
 
