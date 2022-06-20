@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"miwyf.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="使用ESP8266和HLW8032(CSE7766)计量模块制作的电表,代码实现通过ESPHome或者罗总框架,然后接入Home Assistant来展示数据,可以检测电压、电流、功率、用电量、功率因数、频率、CO2排量等">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ESP-HLW8032-Meter电表制作">
+<meta property="og:url" content="http://miwyf.github.io/2022/06/18/esp-hlw8032-meter/index.html">
+<meta property="og:site_name" content="MiWyf">
+<meta property="og:description" content="使用ESP8266和HLW8032(CSE7766)计量模块制作的电表,代码实现通过ESPHome或者罗总框架,然后接入Home Assistant来展示数据,可以检测电压、电流、功率、用电量、功率因数、频率、CO2排量等">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://miwyf.github.io/2022/06/18/esp-hlw8032-meter/image-20220530011149190.png">
+<meta property="og:image" content="http://miwyf.github.io/2022/06/18/esp-hlw8032-meter/image-20220530005707784.png">
+<meta property="og:image" content="http://miwyf.github.io/2022/06/18/esp-hlw8032-meter/image-20220530005750588.png">
+<meta property="og:image" content="http://miwyf.github.io/2022/06/18/esp-hlw8032-meter/image-20220530005939349.png">
+<meta property="og:image" content="http://miwyf.github.io/2022/06/18/esp-hlw8032-meter/image-20220530010114917.png">
+<meta property="og:image" content="http://miwyf.github.io/2022/06/18/esp-hlw8032-meter/image-20220530010114916.png">
+<meta property="article:published_time" content="2022-06-18T12:13:25.000Z">
+<meta property="article:modified_time" content="2022-06-20T06:15:28.006Z">
+<meta property="article:author" content="MiWyf 楚歌">
+<meta property="article:tag" content="ESP8266">
+<meta property="article:tag" content="HLW8032">
+<meta property="article:tag" content="CSE7766">
+<meta property="article:tag" content="Meter">
+<meta property="article:tag" content="ESPHome">
+<meta property="article:tag" content="Homeassistant">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://miwyf.github.io/2022/06/18/esp-hlw8032-meter/image-20220530011149190.png">
+
+
+<link rel="canonical" href="http://miwyf.github.io/2022/06/18/esp-hlw8032-meter/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://miwyf.github.io/2022/06/18/esp-hlw8032-meter/","path":"2022/06/18/esp-hlw8032-meter/","title":"ESP-HLW8032-Meter电表制作"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>ESP-HLW8032-Meter电表制作 | MiWyf</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">MiWyf</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ESP-HLW8032-Meter%E7%94%B5%E8%A1%A8%E5%88%B6%E4%BD%9C"><span class="nav-number">1.</span> <span class="nav-text">ESP-HLW8032-Meter电表制作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A5%E5%85%A5Home-Assistant%E6%95%88%E6%9E%9C"><span class="nav-number">1.1.</span> <span class="nav-text">接入Home Assistant效果:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A1%AC%E4%BB%B6%E5%9B%BE"><span class="nav-number">1.2.</span> <span class="nav-text">硬件图:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6"><span class="nav-number">1.3.</span> <span class="nav-text">软件:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B5%84%E6%BA%90"><span class="nav-number">1.4.</span> <span class="nav-text">资源:</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">MiWyf 楚歌</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/miwyf" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;miwyf" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://miwyf.github.io/2022/06/18/esp-hlw8032-meter/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="MiWyf 楚歌">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MiWyf">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="ESP-HLW8032-Meter电表制作 | MiWyf">
+      <meta itemprop="description" content="使用ESP8266和HLW8032(CSE7766)计量模块制作的电表,代码实现通过ESPHome或者罗总框架,然后接入Home Assistant来展示数据,可以检测电压、电流、功率、用电量、功率因数、频率、CO2排量等">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ESP-HLW8032-Meter电表制作<a href="https://github.com/user-name/repo-name/tree/branch-name/subdirectory-name/_posts/esp-hlw8032-meter.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-06-18 12:13:25" itemprop="dateCreated datePublished" datetime="2022-06-18T12:13:25+00:00">2022-06-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-06-20 06:15:28" itemprop="dateModified" datetime="2022-06-20T06:15:28+00:00">2022-06-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Smart-Home/" itemprop="url" rel="index"><span itemprop="name">Smart Home</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">使用ESP8266和HLW8032(CSE7766)计量模块制作的电表,代码实现通过ESPHome或者罗总框架,然后接入Home Assistant来展示数据,可以检测电压、电流、功率、用电量、功率因数、频率、CO2排量等</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="ESP-HLW8032-Meter电表制作"><a href="#ESP-HLW8032-Meter电表制作" class="headerlink" title="ESP-HLW8032-Meter电表制作"></a>ESP-HLW8032-Meter电表制作</h1><h2 id="接入Home-Assistant效果"><a href="#接入Home-Assistant效果" class="headerlink" title="接入Home Assistant效果:"></a>接入Home Assistant效果:</h2><p><img src="./image-20220530011149190.png" alt="image-20220530011149190"></p>
+<h2 id="硬件图"><a href="#硬件图" class="headerlink" title="硬件图:"></a>硬件图:</h2><p><img src="./image-20220530005707784.png" alt="image-20220530005707784"></p>
+<p><img src="./image-20220530005750588.png" alt="image-20220530005750588"></p>
+<p>加个外壳</p>
+<p><img src="./image-20220530005939349.png" alt="image-20220530005939349"></p>
+<h2 id="软件"><a href="#软件" class="headerlink" title="软件:"></a>软件:</h2><p>这是使用罗总框架实现数据获取</p>
+<p><img src="./image-20220530010114917.png" alt="QQ图片20220530005818"></p>
+<p>这是使用ESPHome实现数据获取</p>
+<p><img src="./image-20220530010114916.png" alt="image-20220530010114916"></p>
+<h2 id="资源"><a href="#资源" class="headerlink" title="资源:"></a>资源:</h2><p>HLW8032手册: <a href="HLW8032_C128023.pdf">HLW8032_C128023.pdf</a></p>
+<p>BOM表和Gerber文件(厚度1.2mm):  <a href="ESP-HLW8032-b.zip">ESP-HLW8032-b.zip</a>  按键用15mm高度的 , 板厚1.2以下, 电阻:200k/0805 1k/0603 普通精度1% , 高精度用0.1%</p>
+<p>罗总框架实现的固件:  </p>
+<p>ESPHome实现的代码:  <a href="cse7766.yaml">cse7766.yaml</a></p>
+<p>HTML BOM: <a href="ibom.html">ibom.html</a></p>
+<p>开源协议: GPL 3.0</p>
+<p>cse7766.yaml</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#################################################</span></span><br><span class="line">        <span class="comment">##CSE766 Energy V1.0##</span></span><br><span class="line"><span class="comment">######### 20220530 by MiWyf #####################</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Your secrets.yaml</span></span><br><span class="line"><span class="comment">#  wifi_ssid: &#x27;ssid&#x27;    #WiFi_SSID名称</span></span><br><span class="line"><span class="comment">#  wifi_password: &#x27;12345678&#x27;    #WiFi密码</span></span><br><span class="line"><span class="comment">#  wifi_password_AP: &#x27;12345678&#x27;  #ap_WiFi密码</span></span><br><span class="line"><span class="comment">#  wifi_fast_connect: &#x27;false&#x27;   #如果SSID是隐藏的，设置为true</span></span><br><span class="line"><span class="comment">#  wifi_reboot_timeout: 60s  #WiFi离线多久后重启设备，秒s/分钟min/小时h，不需要此功能设置为0s</span></span><br><span class="line"><span class="comment">#  ota_password: &#x27;12345678&#x27;    #OTA密码</span></span><br><span class="line"><span class="comment">#  api_password: &#x27;12345678&#x27;    #OTA密码</span></span><br><span class="line"><span class="comment">#  api_reboot_timeout: 0s  #与客户端（如Home Assistant）失去连接多久后重启设备，秒s/分钟min/小时h，不需要此功能设置为0s</span></span><br><span class="line"><span class="comment">#  mqtt_reboot_timeout: 0s</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#################################################</span></span><br><span class="line"></span><br><span class="line"><span class="attr">substitutions:</span></span><br><span class="line">  <span class="comment">#Name your Gateway</span></span><br><span class="line">  <span class="attr">device_name:</span> <span class="string">cse7766</span></span><br><span class="line">  <span class="comment">#Home Assistant Name</span></span><br><span class="line">  <span class="attr">friendly_name:</span> <span class="string">ESP</span> <span class="string">CSE7766</span></span><br><span class="line">  <span class="comment">#Secret YAML is used for next data:</span></span><br><span class="line">  <span class="attr">api_pw:</span> <span class="type">!secret</span> <span class="string">api_password</span></span><br><span class="line">  <span class="attr">ota_pw:</span> <span class="type">!secret</span> <span class="string">ota_password</span></span><br><span class="line"></span><br><span class="line"><span class="attr">esphome:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">$&#123;device_name&#125;</span></span><br><span class="line">  <span class="attr">platform:</span> <span class="string">ESP8266</span></span><br><span class="line">  <span class="attr">board:</span> <span class="string">esp01_1m</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Enable logging</span></span><br><span class="line"><span class="comment">#logger:</span></span><br><span class="line"><span class="comment">#  level: DEBUG</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Enable Home Assistant API</span></span><br><span class="line"><span class="attr">api:</span></span><br><span class="line">  <span class="attr">password:</span> <span class="string">$&#123;api_pw&#125;</span></span><br><span class="line">  <span class="attr">reboot_timeout:</span> <span class="string">0s</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Enable OTA</span></span><br><span class="line"><span class="attr">ota:</span></span><br><span class="line">  <span class="attr">password:</span> <span class="string">$&#123;ota_pw&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#Enable WEB</span></span><br><span class="line"><span class="attr">web_server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">80</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Enable HA Time</span></span><br><span class="line"><span class="attr">time:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">homeassistant</span></span><br><span class="line">    <span class="attr">id:</span> <span class="string">homeassistant_time</span></span><br><span class="line"></span><br><span class="line"><span class="attr">wifi:</span></span><br><span class="line">  <span class="attr">ssid:</span> <span class="type">!secret</span> <span class="string">wifi_ssid</span></span><br><span class="line">  <span class="attr">password:</span> <span class="type">!secret</span> <span class="string">wifi_password</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Enable fallback hotspot (captive portal) in case wifi connection fails</span></span><br><span class="line">  <span class="attr">ap:</span></span><br><span class="line">    <span class="attr">ssid:</span> <span class="string">&quot;CSE7766&quot;</span></span><br><span class="line">    <span class="attr">password:</span> <span class="string">&quot;12345678&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">captive_portal:</span></span><br><span class="line"></span><br><span class="line"><span class="attr">status_led:</span></span><br><span class="line">  <span class="attr">pin:</span> <span class="string">GPIO16</span></span><br><span class="line">  </span><br><span class="line"><span class="comment">#UART Settings</span></span><br><span class="line"><span class="attr">uart:</span></span><br><span class="line">  <span class="attr">rx_pin:</span> <span class="number">13</span></span><br><span class="line">  <span class="attr">baud_rate:</span> <span class="number">4800</span></span><br><span class="line">     </span><br><span class="line"><span class="attr">sensor:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">uptime</span></span><br><span class="line">    <span class="attr">id:</span> <span class="string">uptime_s</span></span><br><span class="line">    <span class="attr">update_interval:</span> <span class="string">60s</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">cse7766</span></span><br><span class="line">    <span class="comment">#update_interval: 15s</span></span><br><span class="line">    <span class="attr">current:</span></span><br><span class="line">      <span class="attr">name:</span> <span class="string">&quot;$&#123;friendly_name&#125; Current&quot;</span></span><br><span class="line">      <span class="attr">filters:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">lambda:</span> <span class="string">return</span> <span class="string">x;</span></span><br><span class="line">    <span class="attr">voltage:</span></span><br><span class="line">      <span class="attr">name:</span> <span class="string">&quot;$&#123;friendly_name&#125; Voltage&quot;</span></span><br><span class="line">      <span class="attr">filters:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">lambda:</span> <span class="string">return</span> <span class="string">x;</span></span><br><span class="line">    <span class="attr">power:</span></span><br><span class="line">      <span class="attr">name:</span> <span class="string">&quot;$&#123;friendly_name&#125; Power&quot;</span></span><br><span class="line">      <span class="attr">filters:</span></span><br><span class="line"><span class="comment">#        - sliding_window_moving_average:</span></span><br><span class="line"><span class="comment">#            window_size: 10</span></span><br><span class="line"><span class="comment">#            send_every: 10</span></span><br><span class="line"><span class="comment">#            send_first_at: 1</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">lambda:</span> <span class="string">return</span> <span class="string">x;</span></span><br><span class="line">    <span class="attr">energy:</span></span><br><span class="line">      <span class="attr">name:</span> <span class="string">&quot;$&#123;friendly_name&#125; Energy&quot;</span></span><br><span class="line">      <span class="attr">unit_of_measurement:</span> <span class="string">kWh</span></span><br><span class="line">      <span class="attr">filters:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">lambda:</span> <span class="string">|-</span></span><br><span class="line"><span class="string">            return x /1000;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="comment"># Extra sensor to keep track of gateway uptime</span></span><br><span class="line"><span class="attr">text_sensor:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">template</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">&quot;$&#123;friendly_name&#125; Uptime&quot;</span></span><br><span class="line">    <span class="attr">lambda:</span> <span class="string">|-</span></span><br><span class="line"><span class="string">      uint32_t dur = id(uptime_s).state;</span></span><br><span class="line"><span class="string">      int dys = 0;</span></span><br><span class="line"><span class="string">      int hrs = 0;</span></span><br><span class="line"><span class="string">      int mnts = 0;</span></span><br><span class="line"><span class="string">      if (dur &gt; 86399) &#123;</span></span><br><span class="line"><span class="string">        dys = trunc(dur / 86400);</span></span><br><span class="line"><span class="string">        dur = dur - (dys * 86400);</span></span><br><span class="line"><span class="string">      &#125;</span></span><br><span class="line"><span class="string">      if (dur &gt; 3599) &#123;</span></span><br><span class="line"><span class="string">        hrs = trunc(dur / 3600);</span></span><br><span class="line"><span class="string">        dur = dur - (hrs * 3600);</span></span><br><span class="line"><span class="string">      &#125;</span></span><br><span class="line"><span class="string">      if (dur &gt; 59) &#123;</span></span><br><span class="line"><span class="string">        mnts = trunc(dur / 60);</span></span><br><span class="line"><span class="string">        dur = dur - (mnts * 60);</span></span><br><span class="line"><span class="string">      &#125;</span></span><br><span class="line"><span class="string">      char buffer[17];</span></span><br><span class="line"><span class="string">      sprintf(buffer, &quot;%ud %02uh %02um %02us&quot;, dys, hrs, mnts, dur);</span></span><br><span class="line"><span class="string">      return &#123;buffer&#125;;</span></span><br><span class="line"><span class="string"></span>    <span class="attr">icon:</span> <span class="string">mdi:clock-start</span></span><br><span class="line">    <span class="attr">update_interval:</span> <span class="string">60s</span></span><br><span class="line"></span><br><span class="line"><span class="attr">switch:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">platform:</span> <span class="string">restart</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">&quot;$&#123;friendly_name&#125; Restart&quot;</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/ESP8266/" rel="tag"># ESP8266</a>
+              <a href="/tags/HLW8032/" rel="tag"># HLW8032</a>
+              <a href="/tags/CSE7766/" rel="tag"># CSE7766</a>
+              <a href="/tags/Meter/" rel="tag"># Meter</a>
+              <a href="/tags/ESPHome/" rel="tag"># ESPHome</a>
+              <a href="/tags/Homeassistant/" rel="tag"># Homeassistant</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/06/02/modbus/" rel="prev" title="Modbus及modbusTCP">
+                  <i class="fa fa-chevron-left"></i> Modbus及modbusTCP
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/06/20/hello-world/" rel="next" title="Hello World">
+                  Hello World <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">MiWyf 楚歌</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
