@@ -1,65 +1,3 @@
----
-title: ESP-HLW8032-Meter电表制作
-date: 2022-06-18 12:13:25
-tags:
-      - ESP8266
-      - HLW8032
-      - CSE7766
-      - Meter
-      - ESPHome
-      - Homeassistant
-categories:
-      - Smart Home
-description: "使用ESP8266和HLW8032(CSE7766)计量模块制作的电表,代码实现通过ESPHome或者罗总框架,然后接入Home Assistant来展示数据,可以检测电压、电流、功率、用电量、功率因数、频率、CO2排量等"
----
-
-# ESP-HLW8032-Meter电表制作
-
-## 接入Home Assistant效果:
-
-![image-20220530011149190](esp-hlw8032-meter/image-20220530011149190.png)
-
-
-
-## 硬件图:
-
-![image-20220530005707784](esp-hlw8032-meter/image-20220530005707784.png)
-
-![image-20220530005750588](esp-hlw8032-meter/image-20220530005750588.png)
-
-加个外壳
-
-![image-20220530005939349](esp-hlw8032-meter/image-20220530005939349.png)
-
-## 软件:
-
-这是使用罗总框架实现数据获取
-
-![QQ图片20220530005818](esp-hlw8032-meter/image-20220530010114917.png)
-
-这是使用ESPHome实现数据获取
-
-![image-20220530010114916](esp-hlw8032-meter/image-20220530010114916.png)
-
-
-
-## 资源:
-
-HLW8032手册: [HLW8032_C128023.pdf](HLW8032_C128023.pdf)
-
-BOM表和Gerber文件(厚度1.2mm):  [ESP-HLW8032-b.zip](ESP-HLW8032-b.zip)  按键用15mm高度的 , 板厚1.2以下, 电阻:200k/0805 1k/0603 普通精度1% , 高精度用0.1%
-
-罗总框架实现的固件:  
-
-ESPHome实现的代码:  [cse7766.yaml](cse7766.yaml)
-
-HTML BOM: [ibom.html](ibom.html)
-
-开源协议: GPL 3.0
-
-cse7766.yaml
-
-```yaml
 #################################################
         ##CSE766 Energy V1.0##
 ######### 20220530 by MiWyf #####################
@@ -191,9 +129,4 @@ text_sensor:
 switch:
   - platform: restart
     name: "${friendly_name} Restart"
-```
-
-
-
-
 
