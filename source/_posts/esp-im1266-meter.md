@@ -1,6 +1,6 @@
 ---
 title: ESP-IM1266-Meter电表制作
-date: 2022-05-30 00:00:52
+date: 2022-06-24 12:00:52
 tags:
       - ESP8266
       - IM1266
@@ -52,11 +52,11 @@ BOM表和Gerber文件:  [EDP-IM1266-Meter.zip](EDP-IM1266-Meter.zip)
 
 罗总框架实现的固件:  [esp8266_im1266_mb.bin](esp8266_im1266_mb.bin)
 
-ESPHome实现的代码:  [im1266-mini.yaml](im1266-mini.yaml)
+ESPHome实现的代码:  [im1266.yaml](im1266.yaml)
 
 开源协议: GPL 3.0
 
-im1266-mini.yaml
+im1266.yaml
 
 ```yaml
 #################################################
@@ -78,7 +78,7 @@ im1266-mini.yaml
 
 substitutions:
   #Name your Gateway
-  device_name: im1266-mini
+  device_name: im1266
   #Home Assistant Name
   friendly_name: ESP IM1266
   #Secret YAML is used for next data:
@@ -91,8 +91,8 @@ esphome:
   board: esp01_1m
 
 # Enable logging
-logger:
-  level: DEBUG
+#logger:
+  #level: DEBUG
 
 # Enable Home Assistant API
 api:
@@ -123,7 +123,9 @@ wifi:
 
 captive_portal:
 
-
+status_led:
+  pin: GPIO16
+    
 #UART Settings
 uart:
   id: mod_bus
@@ -149,7 +151,7 @@ sensor:
     update_interval: 60s
   - platform: modbus_controller
     modbus_controller_id: epever
-    name: "${device_name} Voltage"
+    name: "${friendly_name} Voltage"
     id: im1266_voltage
     register_type: holding
     address: 0x0048
@@ -160,10 +162,10 @@ sensor:
       - multiply: 0.0001
   - platform: modbus_controller
     modbus_controller_id: epever
-    name: "${device_name} Current"
+    name: "${friendly_name} Current"
     id: im1266_current
     register_type: holding
-    address: 0x004A
+    address: 0x0049
     unit_of_measurement: "A"
     value_type: U_DWORD
     accuracy_decimals: 4
@@ -171,10 +173,10 @@ sensor:
       - multiply: 0.0001
   - platform: modbus_controller
     modbus_controller_id: epever
-    name: "${device_name} Power"
+    name: "${friendly_name} Power"
     id: im1266_power
     register_type: holding
-    address: 0x004C
+    address: 0x004A
     unit_of_measurement: "W"
     value_type: U_DWORD
     accuracy_decimals: 4
@@ -182,10 +184,10 @@ sensor:
       - multiply: 0.0001
   - platform: modbus_controller
     modbus_controller_id: epever
-    name: "${device_name} Energy"
+    name: "${friendly_name} Energy"
     id: im1266_energy
     register_type: holding
-    address: 0x004E
+    address: 0x004B
     unit_of_measurement: "kWh"
     value_type: U_DWORD
     accuracy_decimals: 4
@@ -193,10 +195,10 @@ sensor:
       - multiply: 0.0001
   - platform: modbus_controller
     modbus_controller_id: epever
-    name: "${device_name} PF"
+    name: "${friendly_name} PF"
     id: im1266_pf
     register_type: holding
-    address: 0x0050
+    address: 0x004C
     unit_of_measurement: ""
     value_type: U_DWORD
     accuracy_decimals: 3
@@ -204,10 +206,10 @@ sensor:
       - multiply: 0.001
   - platform: modbus_controller
     modbus_controller_id: epever
-    name: "${device_name} CO2"
+    name: "${friendly_name} CO2"
     id: im1266_co2
     register_type: holding
-    address: 0x0052
+    address: 0x004D
     unit_of_measurement: "Kg"
     value_type: U_DWORD
     accuracy_decimals: 4
@@ -215,10 +217,10 @@ sensor:
       - multiply: 0.0001
   - platform: modbus_controller
     modbus_controller_id: epever
-    name: "${device_name} Temprature"
+    name: "${friendly_name} Temprature"
     id: im1266_temprature
     register_type: holding
-    address: 0x0054
+    address: 0x004E
     unit_of_measurement: "°C"
     value_type: U_DWORD
     accuracy_decimals: 2
@@ -226,16 +228,41 @@ sensor:
       - multiply: 0.01
   - platform: modbus_controller
     modbus_controller_id: epever
-    name: "${device_name} Frequency"
+    name: "${friendly_name} Frequency"
     id: im1266_frequency
     register_type: holding
-    address: 0x0056
+    address: 0x004F
     unit_of_measurement: "Hz"
     value_type: U_DWORD
     accuracy_decimals: 2
     filters:
       - multiply: 0.01
 
+switch:
+#  - platform: uart
+#    name: "UART String Output"
+#    data: 'DataToSend'
+
+  - platform: uart
+    name: "${friendly_name} clear10"
+    data: [0x01,0x10,0x00,0x4B,0x00,0x02,0x04,0x00,0x00,0x00,0x00,0xB6,0x2C]
+  #- platform: modbus_controller
+    #modbus_controller_id: epever
+    #name: "${friendly_name} Clear"
+    #register_type: holding
+    #address: 0x004B
+    #bitmask: 0
+    #true: 0x10, false:0x06
+    #use_write_multiple: true
+    #custom_command: [0x01,0x10,0x00,0x4B,0x00,0x02,0x04,0x00,0x00,0x00,0x00]
+
+#  - platform: uart
+#    name: "UART Recurring Output"
+#    data: [0xDE, 0xAD, 0xBE, 0xEF]
+#    send_every: 1s
+  - platform: restart
+    name: "${friendly_name} Restart"
+    
 # Extra sensor to keep track of gateway uptime
 text_sensor:
   - platform: template
@@ -262,6 +289,7 @@ text_sensor:
       return {buffer};
     icon: mdi:clock-start
     update_interval: 60s
+
 ```
 
 
