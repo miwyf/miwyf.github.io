@@ -80,6 +80,7 @@
     <title>ESP-SmartPlug-Meter WiFi计量插座制作</title>
     <url>/2022/07/15/esp-smartplug-meter/</url>
     <content><![CDATA[<h1 id="ESP-SmartPlug-Meter-WiFi磁保持计量插座制作"><a href="#ESP-SmartPlug-Meter-WiFi磁保持计量插座制作" class="headerlink" title="ESP-SmartPlug-Meter WiFi磁保持计量插座制作"></a>ESP-SmartPlug-Meter WiFi磁保持计量插座制作</h1><h2 id="接入Home-Assistant效果"><a href="#接入Home-Assistant效果" class="headerlink" title="接入Home Assistant效果:"></a>接入Home Assistant效果:</h2><p><img src="./image-20220530011149190.png" alt="image-20220530011149190"></p>
+<p><img src="./smartplug_ha.png" alt="image-smartplug_ha"></p>
 <h2 id="硬件图"><a href="#硬件图" class="headerlink" title="硬件图:"></a>硬件图:</h2><p><img src="./image-20220715103230436.png" alt="image-20220715103230436"></p>
 <p><img src="./image-20220715103336565.png" alt="image-20220715103336565"></p>
 <p><img src="./image-20220715103355642.png" alt="image-20220715103355642"></p>
@@ -129,7 +130,7 @@
   </entry>
   <entry>
     <title>Hello World</title>
-    <url>/2022/07/15/hello-world/</url>
+    <url>/2022/07/16/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
 <span id="more"></span>
 
