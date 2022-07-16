@@ -18,7 +18,9 @@ description: "使用ESP8266和HLW8032(CSE7766)计量模块制作的磁保持继�
 
 ## 接入Home Assistant效果:
 
-![image-20220530011149190](esp-hlw8032-meter/image-20220530011149190.png)
+![image-20220530011149190](esp-smartplug-meter/image-20220530011149190.png)
+
+![image-smartplug_ha](esp-smartplug-meter/smartplug_ha.png)
 
 
 
