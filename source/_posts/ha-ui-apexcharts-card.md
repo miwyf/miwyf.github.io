@@ -9,6 +9,7 @@ tags:
 categories:
       - Smart Home
       - Home Assistant
+description: "HomeAssistant超级漂亮的界面"
 ---
 
 # HomeAssistant超级漂亮的界面
@@ -16,8 +17,6 @@ categories:
 ## 接入Home Assistant效果:
 
 ![image-20220530011149190](ha-ui-apexcharts-card/image-20220530011149190.png)
-
-<!--more-->
 
 ## 安装插件:
 
