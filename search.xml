@@ -132,8 +132,6 @@
     <title>ha-ui-apexcharts-card HomeAssistant超级漂亮的界面</title>
     <url>/2022/07/25/ha-ui-apexcharts-card/</url>
     <content><![CDATA[<h1 id="HomeAssistant超级漂亮的界面"><a href="#HomeAssistant超级漂亮的界面" class="headerlink" title="HomeAssistant超级漂亮的界面"></a>HomeAssistant超级漂亮的界面</h1><h2 id="接入Home-Assistant效果"><a href="#接入Home-Assistant效果" class="headerlink" title="接入Home Assistant效果:"></a>接入Home Assistant效果:</h2><p><img src="./image-20220530011149190.png" alt="image-20220530011149190"></p>
-<span id="more"></span>
-
 <h2 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件:"></a>安装插件:</h2><p>插件项目地址:<a href="https://github.com/RomRider/apexcharts-card">RomRider/apexcharts-card: 📈 A Lovelace card to display advanced graphs and charts based on ApexChartsJS for Home Assistant (github.com)</a></p>
 <p>首先安装apexcharts-card插件,你可以直接安装也可以通过hacs</p>
 <p><img src="./image-20220725085328695.png" alt="image-20220725085328695"></p>
