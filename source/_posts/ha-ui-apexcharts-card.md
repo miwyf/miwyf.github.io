@@ -9,7 +9,6 @@ tags:
 categories:
       - Smart Home
       - Home Assistant
-description: "HomeAssistant超级漂亮的界面"
 ---
 
 # HomeAssistant超级漂亮的界面
