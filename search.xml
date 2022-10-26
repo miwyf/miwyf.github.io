@@ -15,7 +15,9 @@
 <p>使用华为云</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 备份原来的配置</span></span><br><span class="line"><span class="built_in">cp</span> -pv /etc/apt/sources.list /etc/apt/sources.list.bak</span><br><span class="line"><span class="comment"># 修改apt源地址为华为云</span></span><br><span class="line">sed -i -e <span class="string">&#x27;s/deb.debian.org/mirrors.huaweicloud.com/g&#x27;</span> -e <span class="string">&#x27;s/security.debian.org/mirrors.huaweicloud.com/g&#x27;</span> /etc/apt/sources.list</span><br><span class="line"><span class="comment"># 刷新缓存</span></span><br><span class="line">apt update</span><br></pre></td></tr></table></figure>
 
-<h3 id=""><a href="#" class="headerlink" title=""></a></h3>]]></content>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h2 id="Debian-更改hostname"><a href="#Debian-更改hostname" class="headerlink" title="Debian 更改hostname"></a>Debian 更改hostname</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo hostnamectl set-hostname newname</span><br><span class="line">sudo nano /etc/hosts</span><br></pre></td></tr></table></figure>
+
+]]></content>
       <categories>
         <category>Debian</category>
       </categories>
@@ -248,7 +250,7 @@
   </entry>
   <entry>
     <title>Hello World</title>
-    <url>/2022/08/11/hello-world/</url>
+    <url>/2022/10/26/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
 <span id="more"></span>
 
