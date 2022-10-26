@@ -57,3 +57,11 @@ apt update
 ```
 
 ### 
+
+## Debian 更改hostname
+
+```
+sudo hostnamectl set-hostname newname
+sudo nano /etc/hosts
+```
+
