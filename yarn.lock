@@ -626,9 +626,9 @@ hexo-theme-landscape@^0.0.3:
   version "0.0.3"
   resolved "https://mirrors.huaweicloud.com/repository/npm/hexo-theme-landscape/-/hexo-theme-landscape-0.0.3.tgz"
 
-hexo-theme-next@^8.15.1:
-  version "8.15.1"
-  resolved "https://registry.yarnpkg.com/hexo-theme-next/-/hexo-theme-next-8.15.1.tgz#e238c60b55a3b7186583d3b93ce6fa81487df04c"
+hexo-theme-next@^8.16.0:
+  version "8.16.0"
+  resolved "https://registry.yarnpkg.com/hexo-theme-next/-/hexo-theme-next-8.16.0.tgz#81e870dfafac692a08d6a0a14b8646fea1c5775d"
 
 hexo-util@^2.0.0, hexo-util@^2.5.0, hexo-util@^2.7.0:
   version "2.7.0"
