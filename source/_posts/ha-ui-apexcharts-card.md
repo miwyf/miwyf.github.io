@@ -30,7 +30,7 @@ description: "HomeAssistant超级漂亮的界面"
 
 ## 界面UI:
 
-卡片的配置
+卡片的配置:
 
 1-1
 
